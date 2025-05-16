@@ -72,13 +72,12 @@ def run_yolo_background_removal(input_video: str, output_folder: str, bg_type: s
         while True:
             ret, frame = cap.read()
             if not ret:
-                break # End of video
+                break 
 
             frame_count += 1
 
             # YOLOv8 Segmentation
             # classes=[0] filters for 'person' class
-            # conf=0.4 sets confidence threshold
             results = model.predict(source=frame, device=device, classes=[0], conf=0.4, verbose=False)
             masks = results[0].masks # Get masks for detected objects
 
