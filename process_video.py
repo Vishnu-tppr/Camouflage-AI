@@ -12,8 +12,8 @@ def run_yolo_background_removal(input_video: str, output_folder: str, bg_type: s
         # You can switch to 'yolov8x-seg.pt' if you have a powerful GPU and need maximum accuracy
         model = YOLO('yolov8n-seg.pt')
         # Determine device to use (GPU if available, otherwise CPU)
-        device = 0 if torch.cuda.is_available() else 'cpu'
-        print(f"[INFO] Using device: {device}")
+        device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+        print(f"Using device: {device}") 
 
         # Load the video using OpenCV
         cap = cv2.VideoCapture(input_video)
